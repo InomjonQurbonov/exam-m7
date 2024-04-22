@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    About Us
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid p-5 bg-primary text-white ">
+        <h1 class="text-left">What is the UN?</h1>
+        <p class="text-center">
+            The United Nations (UN) is an international organization established after World War II. Its primary objectives include maintaining peace and security, promoting cooperation among nations, and addressing global challenges. The UN serves as a platform for member states to discuss and resolve international issues such as conflicts, human rights violations, poverty, disease, climate change, and sustainable development.
+            With 193 member states, the UN's General Assembly is a forum where important decisions are made through votes and resolutions. Additionally, the organization includes specialized agencies like the World Health Organization (WHO), United Nations Educational, Scientific and Cultural Organization (UNESCO), and United Nations Children's Fund (UNICEF), which focus on areas such as health, education, and humanitarian assistance.
+            Key organs of the UN, such as the General Assembly, Security Council, Economic and Social Council, Secretariat, and International Court of Justice, collaborate to fulfill the organization's core principles of peacekeeping, human rights protection, development promotion, and international law enforcement.
+            Overall, the United Nations plays a vital role in addressing global challenges and fostering cooperation among nations to create a more peaceful, equitable, and sustainable world.
+        </p>
+    </div>
+    <div class="container-fluid p-5 bg-light text-blue">
+        <h1 class="text-left">When was the UN founded? Who founded it?</h1>
+        <p class="text-center">
+            The United Nations (UN) was founded on October 24, 1945, after the conclusion of World War II. It was established by representatives from 50 countries who gathered in San Francisco for the United Nations Conference on International Organization.
+            Key figures involved in its creation include Franklin D. Roosevelt, the President of the United States at the time, and Winston Churchill, the Prime Minister of the United Kingdom, among others.
+        </p>
+    </div>
+    <div class="container-fluid p-5 bg-success text-white">
+        <h1 class="text-left">How many countries are members of the UN?</h1>
+        <p class="text-center">
+            As of my last update in January 2023, there are 193 member states in the United Nations.
+        </p>
+        <h1 class="text-center">Some Members:</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Member Name</th>
+                    <th>Member President</th>
+                    <th>About Member</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for member in items|slice:':10' %}
+                    <tr>
+                        <td>{{ member.memeber_name }}</td>
+                        <td>{{ member.member_president }}</td>
+                        <td><a href="{% url 'members-detail' member.pk %}">More About This Member</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-info"><a href="{% url 'members-list' %}">All Members</a></button>
+    </div>
+
+{% endblock %}

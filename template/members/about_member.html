@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+	{{ member.memeber_name }}
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid p-5 bg-primary text-white text-center">
+        <h1>{{ member.memeber_name }}</h1> <h4>{{ member.memmber_added_date }}</h4>
+        <h3>Author:{{ member.member_author}}</h3>
+        <h3>President:{{ member.member_president }}</h3>
+        {% if user == member.member_author %}
+                <button type="button" class="btn btn-warning"><a href="{% url 'members-update' member.pk %}" class="text-white">Edit Member</a></button>
+                <button type="button" class="btn btn-danger"><a href="{% url 'members-delete' member.pk %}" class="text-white">Delete Member</a></button>
+        {% endif %}
+        <img src="{% static member.member_image %}" alt="Member_image">
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+{% endblock %}

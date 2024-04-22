@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+	Confirm Delete Organization
+{% endblock %}
+{% block content %}
+    <div class="container-fluid p-5 bg-primary text-white text-center">
+        <h1>Confirm Delete Organization</h1>
+        <p>Are you sure you want to delete the news titled "{{ organization.organization_name }}"? This action cannot be undone.</p>
+        <form action="{% url 'organizations-delete' organization.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a href="{% url 'organizations-list' %}" class="btn btn-info">Cancel</a>
+        </form>
+    </div>
+{% endblock %}

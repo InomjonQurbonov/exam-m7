@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Organization List
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid p-5 bg-primary text-white text-center">
+      <h1>Here all Organization UN</h1>
+      <p>Hello {{ user.username }}. For more information push to 'More' button!</p>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Organization name</th>
+        <th>Organization Organizate date</th>
+        <th>About Organization</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for organiz in organizations %}
+        <tr>
+            <td>{{ organiz.organization_name }}</td>
+            <td>{{ organiz.organization_organizate_date }}</td>
+            <td><a href="{% url 'organizations-detail' organiz.pk %}">More About This organization</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

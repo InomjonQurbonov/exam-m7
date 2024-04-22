@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    HomePage
+{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style/card.css' %}">
+    <br>
+    <div class="container-fluid p-3 bg-primary text-white text-center">
+        <h1>UN news and events</h1>
+        <p>Here you can get information about all the news happening in the world</p>
+    </div>
+
+    <div id="demo" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {% for new in items|slice:":3" %}
+                <div class="carousel-item{% if forloop.first %} active{% endif %}">
+                    <img src="{% static new.news_image %}" alt="{{ new.news_title }}" class="d-block w-100">
+                    <div class="carousel-caption">
+                        <a href="{% url 'news_detail' new.pk %}"><h3 class="text-light">{{ new.news_title }}</h3></a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+
+    <div class="container-fluid p-5 text-white text-center">
+        <a href="{% url 'list_news' %}" class="btn btn-outline-success">All News</a>
+        <a href="{% url 'list_works' %}" class="btn btn-outline-info">Our Works</a>
+        <a href="{% url 'organizations-list' %}" class="btn btn-outline-success">Organizations</a>
+        <a href="{% url 'members-list' %}" class="btn btn-outline-info">Our Members</a>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            {% for new in items|slice:":6" %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ new.news_title }}</h5>
+                            <p class="card-text small-desc">{{ new.news_description }}</p>
+                            <div class="go-corner">
+                                    <div class="go-arrow">
+                                        <a href="{% url 'news_detail' new.pk %}">→</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="container-fluid bg-success p-5 text-white text-center">
+        <h1>Our works in this year's...</h1>
+        <div class="row">
+            {% for work in items|slice:':6' %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><b>UN works</b></h5>
+                                <div class="go-corner" >
+                                    <div class="go-arrow">
+                                        <a href="{% url 'works_detail' work.pk %}">→</a>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

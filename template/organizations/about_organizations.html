@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+	{{ organization.organization_name }}
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid p-5 bg-primary text-white text-center">
+        <h1>{{ organization.organization_name }}</h1> <h4>{{ organization.organization_organizate_date }}</h4>
+        <h3>President:{{ organization.organization_author }}</h3>
+        <h3>President:{{ organization.organization_president }}</h3>
+        {% if user == organization.organization_author %}
+            <button type="button" class="btn btn-warning"><a href="{% url 'organizations-update' organization.pk %}" class="text-white">Edit Organization</a></button>
+            <button type="button" class="btn btn-danger"><a href="{% url 'organizations-delete' organization.pk %}" class="text-white">Delete Organization</a></button>
+        {% endif %}
+        <button type="button" class="btn btn-info"><a href="{{ organization.organization_link }}">Official Website</a></button>
+        <img src="{% static organization.organization_logo %}" alt="News_image">
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+{% endblock %}

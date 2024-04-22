@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}
+	Edit Organization
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid p-5 bg-primary text-white text-center">
+      <h1>Page for Edit Organization</h1>
+      <p>Hello dear {{ user.username }}. Here you can Edit your News or Post! Good Luck</p>
+    </div>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Edit Organization" class="btn btn-success">
+    </form>
+{% endblock %}

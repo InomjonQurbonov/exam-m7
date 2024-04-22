@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+	{{ works.work_title }}
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid p-5 bg-primary text-white text-center">
+        <h1>{{ works.work_title }}</h1> <h4>This case happened this year{{ works.work_date }}</h4>
+            <h4>Author:{{ works.work_author }}</h4>
+            {% if user == works.work_author %}
+                <button type="button" class="btn btn-warning"><a href="{% url 'update_work' works.pk %}" class="text-white">Edit Works</a></button>
+                <button type="button" class="btn btn-danger"><a href="{% url 'delete_work' works.pk %}" class="text-white">Delete Works</a></button>
+            {% endif %}
+    <div class="container"><h3>{{ works.work_description|safe }}</h3></div>
+        <img src="{% static works.work_image %}" alt="Work_image">
+    <div class="container">{{ works.workers }}</div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+{% endblock %}
